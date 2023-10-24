@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 exports.connect = () => {
   // Connecting to the database
-  const MONGO_URI = "mongodb://localhost:27017/scalable";
+  const MONGO_URI = "mongodb://localhost:27017/service3";
 
   console.log(MONGO_URI)
   mongoose.set("strictQuery", false);

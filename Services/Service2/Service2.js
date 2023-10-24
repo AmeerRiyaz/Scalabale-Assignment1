@@ -16,6 +16,7 @@ app.use(
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+
 //Add items to DB in order to show to users 
 app.post('/insertitems',async(req,res)=>{
     let itemName = req.body.itemName
