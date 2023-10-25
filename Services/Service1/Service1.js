@@ -5,16 +5,15 @@ var express = require("express");
 var app = express();
 app.use(express.json({ extended: false, limit: "50mb" }));
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+const cors = require("cors");
 app.use(
 	cors({
 		origin: "*",
 	})
 );
-
-
-
+const bcrypt = require("bcryptjs");
+var db=require("./database")
+db.connect()
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
@@ -53,14 +52,15 @@ app.post("/register", async (req, res) => {
 			mobile: mobile
 		});
 
-		user.save(function (err, result) {
-			if (err) {
-				console.log("couldnt save");
-			} else {
-				console.log(result);
-			}
-		});
+		// user.save(function (err, result) {
+		// 	if (err) {
+		// 		console.log("couldnt save");
+		// 	} else {
+		// 		console.log(result);
+		// 	}
+		// });
 
+	
 		// return new user
 		res.status(201).json(user);
 	} catch (err) {
@@ -87,13 +87,18 @@ app.post("/login", async (req, res) => {
 
 		if (user && (await bcrypt.compare(password, user.password))) {
 
-			user.save(function (err, result) {
-				if (err) {
-					console.log("couldnt save");
-				} else {
-					console.log(result);
-				}
-			});
+			// user.save(function (err, result) {
+			// 	if (err) {
+			// 		console.log("couldnt save");
+			// 	} else {
+			// 		console.log(result);
+			// 	}
+			// });
+			let output;
+			(async () => {
+			   output = await user.save();
+			})
+			
 
 			// user
 			res.status(200).json(user);
@@ -107,6 +112,6 @@ app.post("/login", async (req, res) => {
 
 app.listen(3000, function(err){
     if (err) console.log("Error in server setup")
-    console.log("Server listening on Port", PORT);
+    console.log("Server listening on Port", 3000);
 })
 
