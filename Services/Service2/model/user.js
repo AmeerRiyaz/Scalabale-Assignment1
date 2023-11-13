@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
   // first service 
-  const firstDBUrl = 'mongodb://localhost:27017/service1';
+  const firstDBUrl = 'mongodb://192.168.0.52:27017/service1';
   const firstDBConnection = mongoose.createConnection(firstDBUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 var userSchema = new mongoose.Schema({
   
