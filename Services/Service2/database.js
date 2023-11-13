@@ -13,7 +13,7 @@ exports.connect = () => {
       useUnifiedTopology: true,
     })
     .then(async () => {
-      console.log("Successfully connected to database ubf");
+      console.log("Successfully connected to database ");
 
     })
 
