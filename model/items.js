@@ -1,0 +1,17 @@
+//User Schema
+
+const mongoose = require("mongoose");
+  // second service 
+  const secondDBUrl = 'mongodb://192.168.0.52:27017/service2';
+  const secondDBConnection = mongoose.createConnection(secondDBUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+var itemSchema = new mongoose.Schema({
+  itemName:{type: String},
+  itemCode:{type: String},
+  price:{type: String}
+  
+});
+
+
+
+module.exports = secondDBConnection.model("Items", itemSchema);
+
